@@ -2,6 +2,7 @@ import { motion , useAnimationControls} from 'framer-motion';
 import { useEffect, useState } from 'react';
 import NavigationLink from './NavigationLink';
 import SettingsNav from './SettingsNav';
+import { Link } from 'react-router-dom';
 import { ChartBarIcon } from '@heroicons/react/24/outline'
 import { UilEstate,UilCompass ,UilHeartAlt, UilSchedule, UilPanoramaHAlt ,UilSetting  } from '@iconscout/react-unicons'
 
@@ -78,9 +79,9 @@ const SideNavbar = ({ setIsSidebarOpen }) => {
       variants={containerVariants}
       animate={containerControls}
       initial="close"
-      className="bg-neutral-900 flex flex-col z-10 gap-20 p-5 absolute top-0 left-0 h-full shadow shadow-neutral-600">
+      className="bg-neutral-900 flex flex-col z-10 gap-20 p-5 absolute top-0 left-0 h-101 lg:h-full shadow shadow-neutral-600">
       <div className="flex flex-row w-full justify-between place-items-center">
-        <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to amber-700 rounded-full" />
+        
         
         <button className='p-1 rounded-full flex' onClick={handleOpenClose}>
           <svg
@@ -105,14 +106,19 @@ const SideNavbar = ({ setIsSidebarOpen }) => {
           </svg>
         </button>
       </div>
-      <div className='flex flex-col gap-3 -mx-2'>
-        <NavigationLink name="Home" >
+      
+      <div className='flex flex-col gap-3 -mx-2 md:mt-5 lg:mt-5'>
+     
+        <NavigationLink to="/" name="Home" >
           <UilEstate className="stroke-inherit stroke-[0.75] min-w-8 w-8 h-7"/>
         </NavigationLink>
-        <NavigationLink name="Discover" >
+        
+       
+        <NavigationLink to="/discover" name="Discover" >
           <UilCompass  className="stroke-inherit stroke-[0.75] min-w-8 w-8 h-7"/>
         </NavigationLink>
-        <NavigationLink name="Watch list" >
+        
+        <NavigationLink  name="Watch list" >
           <UilHeartAlt  className="stroke-inherit stroke-[0.75] min-w-8 w-8 h-7"/>
         </NavigationLink>
         <NavigationLink name="Coming Soon" >
@@ -122,13 +128,16 @@ const SideNavbar = ({ setIsSidebarOpen }) => {
         <NavigationLink  name="Categories" >
           < UilPanoramaHAlt  className=" stroke-inherit stroke-[0.75] min-w-8 w-8 "/>
         </NavigationLink>
-
-        <SettingsNav settings="Settings">
-            < UilSetting  className=" stroke-inherit stroke-[0.75] min-w-8 w-8 " />
-        </SettingsNav>
+       
         
         
       </div>
+      
+      <SettingsNav  settings="Settings">
+            < UilSetting  className=" stroke-inherit stroke-[0.75] min-w-8 w-8 " />
+        </SettingsNav>
+        
+      
     </motion.nav>
   );
 };
