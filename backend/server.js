@@ -1,10 +1,14 @@
 require('dotenv').config()
 
 const express = require('express')
+const cors = require('cors');
 const mongoose = require('mongoose')
 const movieRoutes = require('./routes/movies')
 
 const app = express()
+
+// Enable CORS for all requests
+app.use(cors());
 
 app.use(express.json())
 
