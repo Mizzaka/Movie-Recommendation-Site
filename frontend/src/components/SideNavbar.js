@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import NavigationLink from './NavigationLink';
 import SettingsNav from './SettingsNav';
 import { Link } from 'react-router-dom';
-import { UilEstate, UilCompass, UilHeartAlt, UilSchedule, UilPanoramaHAlt, UilSetting } from '@iconscout/react-unicons';
+import { UilEstate, UilCompass, UilHeartAlt, UilSchedule, UilPanoramaHAlt, UilSetting, } from '@iconscout/react-unicons';
 
 const containerVariants = {
   close: {

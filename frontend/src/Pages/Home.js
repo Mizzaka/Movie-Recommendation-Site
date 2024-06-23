@@ -2,6 +2,8 @@ import { motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 import Blade from "../assets/newblade.jpeg";
 import MovieCard from "../components/MovieCard";
+import { UilSearch } from '@iconscout/react-unicons';
+import axios from 'axios';
 
 const dashboardVariants = {
   close: {
@@ -25,6 +27,23 @@ const dashboardVariants = {
 const Home = ({ isSidebarOpen }) => {
   const controls = useAnimationControls();
 
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/movies');
+        setMovies(response.data);
+        console.log(response.data);  // Log the response to check URLs
+      } catch (err) {
+        setError('Failed to fetch movies.');
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
   useEffect(() => {
     if (isSidebarOpen) {
       controls.start("open");
@@ -39,9 +58,22 @@ const Home = ({ isSidebarOpen }) => {
         variants={dashboardVariants}
         animate={controls}
         initial="close"
-        className=" px-5 mr-10 mt-20 text-white"
+        className=" px-5 mr-10 mt-10 text-white"
       >
-        <div className=" relative border border-neutral-600 px-0 py-10 md:py-0 rounded-lg mt-10 mx-20 mr-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 mx-10 mb-5">
+            <div className="col-span-1 md:col-span-2 flex justify-center md:justify-start relative">
+              <input
+                type="text"
+                name="movie"
+                className="w-full md:w-1/2 lg:w-1/3 h-10 px-4 py-2 rounded-lg text-gray-600 bg-gray-300"
+                placeholder="Search Your Movie"
+              />
+              
+            </div>
+            <UilSearch style={{ right: '45rem' }} className= "absolute  top-1/2 transform -translate-y-1/2 text-gray-600" />
+          </div>
+
+        <div className=" relative border border-neutral-600 px-0 py-10 md:py-0 rounded-lg mt-10 mx-10 mr-0 ">
           <img
             src={Blade}
             alt="Description of image"
@@ -67,25 +99,30 @@ const Home = ({ isSidebarOpen }) => {
           </div>
         </div>
 
-        <div className="mt-20">
-          <div className="mb-8 mx-20 flex justify-between">
+        <div className="mt-10">
+          <div className="mb-8 mx-10 flex justify-between">
             <p className="text-lg md:text-2xl ">Your Movies</p>
           </div>
-       
-       <div className="m-20 ">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+
+          <div className="m-10 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+            {error && <p>{error}</p>}
+            {movies.map(movie => (
+               <a href="#" key={movie._id}>
+              <MovieCard 
+                 image={movie.imageUrl}
+                 title={movie.title}
+                 moviedate={movie.moviedate}
+                 ratings={movie.ratings}
+
+              />
+              </a>
+            ))}
             
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            {/* Add more MovieCard components as needed */}
-          </div>
+              
+            </div>
           </div>
         </div>
-
       </motion.div>
     </>
   );

@@ -21,7 +21,7 @@ const MovieList = () => {
 
   return (
     <div>
-      <h1>Movie List</h1>
+      <h1 className='text-white'>Movie List</h1>
       {error && <p>{error}</p>}
       <ul>
         {movies.map(movie => (
