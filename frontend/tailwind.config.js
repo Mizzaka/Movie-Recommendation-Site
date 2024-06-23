@@ -51,6 +51,7 @@ module.exports = {
 
     width: ({ theme }) => ({
       auto: 'auto',
+      '60': '30rem',
       '100': '34rem',
       '101'  : '100rem',
       ...theme('spacing'),
