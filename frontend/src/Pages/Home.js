@@ -2,7 +2,8 @@ import { motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 import Blade from "../assets/newblade.jpeg";
 import MovieCard from "../components/MovieCard";
-import { UilSearch } from '@iconscout/react-unicons';
+import NavBar from "../components/NavBar";
+
 import axios from 'axios';
 
 const dashboardVariants = {
@@ -60,18 +61,8 @@ const Home = ({ isSidebarOpen }) => {
         initial="close"
         className=" px-5 mr-10 mt-10 text-white"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 mx-10 mb-5">
-            <div className="col-span-1 md:col-span-2 flex justify-center md:justify-start relative">
-              <input
-                type="text"
-                name="movie"
-                className="w-full md:w-1/2 lg:w-1/3 h-10 px-4 py-2 rounded-lg text-gray-600 bg-gray-300"
-                placeholder="Search Your Movie"
-              />
-              
-            </div>
-            <UilSearch style={{ right: '45rem' }} className= "absolute  top-1/2 transform -translate-y-1/2 text-gray-600" />
-          </div>
+        <NavBar />
+        
 
         <div className=" relative border border-neutral-600 px-0 py-10 md:py-0 rounded-lg mt-10 mx-10 mr-0 ">
           <img
