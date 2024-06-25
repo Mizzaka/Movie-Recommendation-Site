@@ -5,6 +5,7 @@ import DiscoverPage from './Pages/DiscoverPage.js';
 import {  useState } from 'react';
 import MovieList from './MovieList.js';
 import MovieUpload from './MovieUpload.js';
+import SeriesUpload from './SeriesUpload.js';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   <Router>
     <div className="flex">
      
-     <SideNavbar setIsSidebarOpen={setIsSidebarOpen} /> 
+     {/* <SideNavbar setIsSidebarOpen={setIsSidebarOpen} />  */}
      
     {/* <Dashbord isSidebarOpen={isSidebarOpen} /> */}
     <Routes>
@@ -22,6 +23,7 @@ function App() {
             <Route path="/discover" element={<DiscoverPage isSidebarOpen={isSidebarOpen} />} />
             <Route path="/list" element={<MovieList />} />
             <Route path="/upload" element={<MovieUpload />} />
+            <Route path="/seriesupload" element={<SeriesUpload />} />
             
           </Routes>
   </div>

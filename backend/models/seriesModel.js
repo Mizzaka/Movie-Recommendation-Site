@@ -33,7 +33,10 @@ const seriesSchema = new Schema({
         reuired: true
     },
 
-   
+    image: {
+        type: String,
+        required:  true
+    }
 
 })
 

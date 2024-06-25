@@ -2,36 +2,37 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+  const [series, setSeries] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchSeries = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/movies');
-        setMovies(response.data);
+        const response = await axios.get('http://localhost:4000/api/series');
+        setSeries(response.data);
         console.log(response.data);  // Log the response to check URLs
       } catch (err) {
-        setError('Failed to fetch movies.');
+        setError('Failed to fetch Series.');
       }
     };
 
-    fetchMovies();
+    fetchSeries();
   }, []);
 
   return (
     <div>
-      <h1 className='text-white'>Movie List</h1>
+      <h1 className='text-white'>series List</h1>
       {error && <p>{error}</p>}
       <ul>
-        {movies.map(movie => (
-          <li key={movie._id}>
-            <h2>{movie.title}</h2>
-            <p>Category: {movie.category}</p>
-            <p>Movie Date: {movie.moviedate}</p>
-            <p>Ratings: {movie.ratings}</p>
-            <p>Description: {movie.description}</p>
-            <img src={movie.imageUrl} alt={movie.title} style={{ width: '200px', height: 'auto' }} />
+        {series.map(series => (
+          <li key={series._id}>
+            <h2>{series.title}</h2>
+            <p>Category: {series.category}</p>
+            <p>Movie Date: {series.moviedate}</p>
+            <p>Ratings: {series.ratings}</p>
+            <p>Description: {series.description}</p>
+            <p>Season: {series.season}</p>
+            <img src={series.imageUrl} alt={series.title} style={{ width: '200px', height: 'auto' }} />
             
           </li>
         ))}

@@ -29,6 +29,7 @@ const Home = ({ isSidebarOpen }) => {
   const controls = useAnimationControls();
 
   const [movies, setMovies] = useState([]);
+  const [series, setSeries] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -43,6 +44,20 @@ const Home = ({ isSidebarOpen }) => {
     };
 
     fetchMovies();
+  }, []);
+
+  useEffect(() => {
+    const fetchSeries = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/series');
+        setSeries(response.data);
+        console.log(response.data);  // Log the response to check URLs
+      } catch (err) {
+        setError('Failed to fetch Series.');
+      }
+    };
+
+    fetchSeries();
   }, []);
 
   useEffect(() => {
@@ -112,6 +127,32 @@ const Home = ({ isSidebarOpen }) => {
             
               
             </div>
+
+            
+          </div>
+          <div className="mb-8 mx-10 flex justify-between">
+            <p className="text-lg md:text-2xl ">Your Series</p>
+          </div>
+
+          <div className="m-10 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+            {error && <p>{error}</p>}
+            {series.map(series => (
+               <a href="#" key={series._id}>
+              <MovieCard 
+                 image={series.imageUrl}
+                 title={series.title}
+                 moviedate={series.moviedate}
+                 ratings={series.ratings}
+
+              />
+              </a>
+            ))}
+            
+              
+            </div>
+
+            
           </div>
         </div>
       </motion.div>
