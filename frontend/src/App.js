@@ -15,7 +15,7 @@ function App() {
   <Router>
     <div className="flex">
      
-     {/* <SideNavbar setIsSidebarOpen={setIsSidebarOpen} />  */}
+      <SideNavbar setIsSidebarOpen={setIsSidebarOpen} />  
      
     {/* <Dashbord isSidebarOpen={isSidebarOpen} /> */}
     <Routes>
