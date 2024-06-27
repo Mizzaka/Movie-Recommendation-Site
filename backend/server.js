@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose')
 const movieRoutes = require('./routes/movies')
 const seriesRoutes = require('./routes/series')
+const userRoutes = require('./routes/user')
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 
 app.use('/api/movies',movieRoutes)
 app.use('/api/series',seriesRoutes)
+app.use('/api/users',userRoutes)
 
 
 // connect to db
