@@ -6,33 +6,25 @@ const AuthContext = createContext();
 const AuthProvider = ({ Children }) => {
     const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if(token) {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ${token}';
-            axios.get('/api/users/profile').then( response => {
-                setUser(response.data);
-            }).catch(() => {
-                localStorage.removeItem('token');
-            });
-        }
-    }, []);
+   const login = async (email, passowrd) => {
+    const response = await axios.post('/api/users/login', { email, passowrd });
+    setUser(response.data); 
+    localStorage.setItem('user', JSON.stringify(response.data));
+   };
 
-    const login = async (email, password) => {
-        const response = await axios.post('/api/users/login', { email, password});
-        localStorage.setItem('token', response.data.token);
-        axios.defaults.headers.common['Authorization'] = 'Bearer S{response.data.token}';
-        setUser(response.data);
-    };
+   const register = async (username, email, password) => {
+    const response = await axios.post('/api/users/register', { username, email, passowrd });
+    setUser(response.data);
+    localStorage.setItem('user', JSON.stringify(response.data));
+   };
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        delete axios.defaults.headers.common['Authorization'];
-        setUser(null);
-    };
+   const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+   };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout}}>
+        <AuthContext.Provider value={{ user, login, register, logout}}>
             {Children}
         </AuthContext.Provider>
     );
