@@ -634,6 +634,11 @@ video {
   margin-right: 18rem;
 }
 
+.mx-40 {
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
 .-mr-3 {
   margin-right: -0.75rem;
 }

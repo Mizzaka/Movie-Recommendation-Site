@@ -1,42 +1,48 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import SideNavbar from './components/SideNavbar.js';
 import Home from './Pages/Home.js';
 import DiscoverPage from './Pages/DiscoverPage.js';
-import {  useState } from 'react';
+import { useState } from 'react';
 import MovieList from './MovieList.js';
 import MovieUpload from './MovieUpload.js';
 import SeriesUpload from './SeriesUpload.js';
 import Testregister from './components/Testregister.js';
+import TestLogin from './components/TestLogin.js'
 import AuthProvider from './context/AuthContext';
 import Register from './components/Register.js';
 
+function MainLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const location = useLocation();
+
+  // Array of paths where the sidebar should not be shown
+  const noSidebarPaths = ['/register', '/tlogin'];
+
+  return (
+    <div className="flex">
+      {!noSidebarPaths.includes(location.pathname) && <SideNavbar setIsSidebarOpen={setIsSidebarOpen} />}
+      <Routes>
+        <Route path="/" element={<Home isSidebarOpen={isSidebarOpen} />} />
+        <Route path="/discover" element={<DiscoverPage isSidebarOpen={isSidebarOpen} />} />
+        <Route path="/list" element={<MovieList />} />
+        <Route path="/upload" element={<MovieUpload />} />
+        <Route path="/seriesupload" element={<SeriesUpload />} />
+        <Route path="/tregister" element={<Testregister />} />
+        <Route path="/tlogin" element={<TestLogin />} />
+        <Route path="/register" element={<Register />} />
+        
+      </Routes>
+    </div>
+  );
+}
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   return (
-
-
-<AuthProvider>
-  <Router>
-    <div className="flex">
-     
-    {/* <SideNavbar setIsSidebarOpen={setIsSidebarOpen} />    */}
-     
-    {/* <Dashbord isSidebarOpen={isSidebarOpen} /> */}
-    <Routes>
-            <Route path="/" element={<Home isSidebarOpen={isSidebarOpen} />} />
-            <Route path="/discover" element={<DiscoverPage isSidebarOpen={isSidebarOpen} />} />
-            <Route path="/list" element={<MovieList />} />
-            <Route path="/upload" element={<MovieUpload />} />
-            <Route path="/seriesupload" element={<SeriesUpload />} />
-            <Route path="/tregister" element={<Testregister/>} />
-            <Route path="/register" element={<Register/>} />
-            
-            
-          </Routes>
-  </div>
-  </Router>
- </AuthProvider >
+    <AuthProvider>
+      <Router>
+        <MainLayout />
+      </Router>
+    </AuthProvider>
   );
 }
 

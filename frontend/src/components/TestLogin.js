@@ -1,33 +1,27 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-const Register = () => {
-  const [username, setUsername] = useState('');
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { register } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    console.log('Registering user:', { username, email, password });
-      await register(username, email, password);
-      console.log('User registered successfully');
+      await login(email, password);
+      navigate('/'); // Navigate to Home page after successful login
     } catch (error) {
-      console.error('Registration error:', error);
+      // Handle login error
+      console.error('Login failed', error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-        required
-      />
-      <input
+      <input className="mx-40"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -41,10 +35,9 @@ const Register = () => {
         placeholder="Password"
         required
       />
-      <button type="submit">Register</button>
+      <button type="submit">Login</button>
     </form>
   );
 };
 
-export default Register;
-
+export default Login;
