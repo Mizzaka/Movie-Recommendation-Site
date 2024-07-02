@@ -1,7 +1,10 @@
-import React from 'react'
-
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import New from "../assets/new.jpg";
+
 const NavBar = () => {
+  const { user, logout } = useContext(AuthContext);
+
   return (
     
         <div className="grid grid-cols-1 md:grid-cols-2 mx-10 mr-0 mb-5 ">
@@ -19,7 +22,13 @@ const NavBar = () => {
 
           <div className='flex gap-10 justify-end '>
              <div className='mt-3'>
-                <a href='#' className='text-secondary' >Login</a>
+              { user ? (
+                <button onClick={logout} className='text-secondary'>Logout</button>
+              ) : (
+                <a href='/login' className='text-secondary' >Login</a>
+              
+              )}
+                
              </div>
 
              <div>
