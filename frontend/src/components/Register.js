@@ -51,7 +51,7 @@ const Register = () => {
               </form>
 
               <div className='mt-10 text-center'>
-                <p className='text-gray-300'>if you are alredy Sign Up? <a href='#' className='text-secondary'>Login</a> </p>
+                <p className='text-gray-300'>if you are alredy Sign Up? <a href='/login' className='text-secondary'>Login</a> </p>
               </div>
           </div>
         </div>

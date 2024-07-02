@@ -10,13 +10,14 @@ import Testregister from './components/Testregister.js';
 import TestLogin from './components/TestLogin.js'
 import AuthProvider from './context/AuthContext';
 import Register from './components/Register.js';
+import Login from './components/Login.js';
 
 function MainLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
 
   // Array of paths where the sidebar should not be shown
-  const noSidebarPaths = ['/register', '/tlogin'];
+  const noSidebarPaths = ['/register', '/login'];
 
   return (
     <div className="flex">
@@ -30,6 +31,7 @@ function MainLayout() {
         <Route path="/tregister" element={<Testregister />} />
         <Route path="/tlogin" element={<TestLogin />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         
       </Routes>
     </div>
