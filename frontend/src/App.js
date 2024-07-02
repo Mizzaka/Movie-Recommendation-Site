@@ -6,8 +6,9 @@ import {  useState } from 'react';
 import MovieList from './MovieList.js';
 import MovieUpload from './MovieUpload.js';
 import SeriesUpload from './SeriesUpload.js';
-import Register from './components/Register';
+import Testregister from './components/Testregister.js';
 import AuthProvider from './context/AuthContext';
+import Register from './components/Register.js';
 
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
             <Route path="/list" element={<MovieList />} />
             <Route path="/upload" element={<MovieUpload />} />
             <Route path="/seriesupload" element={<SeriesUpload />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/tregister" element={<Testregister/>} />
+            <Route path="/register" element={<Register/>} />
             
             
           </Routes>
