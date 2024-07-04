@@ -1,8 +1,10 @@
 
 import { motion, useAnimationControls } from 'framer-motion';
-import { useEffect,  } from 'react';
+import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar';
 import Int from "../assets/int.jpg";
+import axios from 'axios';
+import TestCard from '../components/TestCard';
 
 const dashboardVariants = {
   close: {
@@ -24,6 +26,26 @@ const dashboardVariants = {
 }
 
 const DiscoverPage = ({ isSidebarOpen }) => {
+ 
+
+  const [movies, setMovies] = useState([]);
+  
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/movies');
+        setMovies(response.data);
+        console.log(response.data);  // Log the response to check URLs
+      } catch (err) {
+        setError('Failed to fetch movies.');
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -67,6 +89,28 @@ const DiscoverPage = ({ isSidebarOpen }) => {
             <div className=" flex flex-col justify-center order-2 md:order-1 mb-3 md:mb-0"></div>
           </div>
         </div>
+
+
+        <div className="m-10 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+            {error && <p>{error}</p>}
+            {movies.map(movie => (
+               <a href="#" key={movie._id}>
+              <TestCard 
+                 image={movie.imageUrl}
+                 title={movie.title}
+                 moviedate={movie.moviedate}
+                 ratings={movie.ratings}
+
+              />
+              </a>
+            ))}
+            
+              
+            </div>
+
+            
+          </div>
     </motion.div>
   )
 }
