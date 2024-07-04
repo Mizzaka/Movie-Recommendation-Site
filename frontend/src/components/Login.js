@@ -27,7 +27,7 @@ const Login = () => {
     
        <div className="absolute inset-0 flex items-center justify-center font-poppins bg-black bg-opacity-50">
         <div className='grid grid-cols-1  '>
-          <div className='  bg-primary w-96 h-100 shadow-lg rounded-md'>
+          <div className='  bg-card w-96 h-100 shadow-lg rounded-md'>
               <div>
                 <p className='text-center mt-8 text-3xl text-secondary font-semibold'>FLIXPAL</p>
               </div>
