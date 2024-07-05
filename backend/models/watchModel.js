@@ -9,6 +9,7 @@ const watchliststSchema = new Schema({
         required: true,
         refPath: 'itemType'
     },
+    
     itemType: {
         type: String,
         required: true,

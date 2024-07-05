@@ -11,6 +11,7 @@ import TestLogin from './components/TestLogin.js'
 import AuthProvider from './context/AuthContext';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
+import WatchlistPage from './Pages/WatchlistPage.js';
 
 function MainLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -32,6 +33,7 @@ function MainLayout() {
         <Route path="/tlogin" element={<TestLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/watch" element={<WatchlistPage isSidebarOpen={isSidebarOpen} />} />
         
       </Routes>
     </div>
