@@ -31,23 +31,24 @@ const WatchlistPage = ({ isSidebarOpen }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (user) {
-            const fetchWatchlist = async () => {
-                try {
-                    const token = localStorage.getItem('token');
-                    const response =  await axios.get('/api/watchlist' , {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
-                    setWatchlist(response.data);
-                } catch (err) {
-                    setError('Failed to fetch watchlist');
-                    console.error('Error fetching watchlist:', err);
-                }
-            };
-
-            fetchWatchlist();
-        }
-    }, [user]);
+      if (user) {
+          const fetchWatchlist = async () => {
+              try {
+                  const token = localStorage.getItem('token');
+                  const response = await axios.get('/api/watchlist', {
+                      headers: { Authorization: `Bearer ${token}` }
+                  });
+  
+                  setWatchlist(response.data);
+              } catch (err) {
+                  setError('Failed to fetch watchlist');
+                  console.error('Error fetching watchlist:', err);
+              }
+          };
+  
+          fetchWatchlist();
+      }
+  }, [user]);
 
     const controls = useAnimationControls();
 
@@ -103,17 +104,17 @@ const WatchlistPage = ({ isSidebarOpen }) => {
             <div className='mt-10'>
             {error && <p>{error}</p>}
       <div className="grid grid-cols-3 gap-4">
-        {watchlist.map((item) => (
-          <MediaCard
+      {watchlist.map((item) => (
+        <MediaCard
             key={item._id}
             id={item.item._id}
             type={item.itemType}
-            image={item.item.image}
+            image={item.item.imageUrl} // Use the generated imageUrl
             title={item.item.title}
             releaseDate={item.item.moviedate}
             ratings={item.item.ratings}
-          />
-        ))}
+        />
+    ))}
       </div>
         </div>
         </div>
