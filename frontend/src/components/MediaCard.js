@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
-const MediaCard = ({ id, type, image, title, releaseDate, ratings }) => {
+const MediaCard = ({ id, type, image, title, releaseDate, ratings, onDelete, isInWatchlist }) => {
   const { user } = useContext(AuthContext);
 
   const handleWatchlistClick = async () => {
@@ -27,6 +27,12 @@ const MediaCard = ({ id, type, image, title, releaseDate, ratings }) => {
     }
   };
 
+  const handelDeleteClick = async () => {
+    if (onDelete) {
+      onDelete(id, type);
+    }
+  };
+
   return (
     <div className="card relative">
       <img src={image} alt={title} className="w-full h-32 object-cover rounded-xl" />
@@ -45,7 +51,7 @@ const MediaCard = ({ id, type, image, title, releaseDate, ratings }) => {
       </div>
       <div className="absolute top-2 right-2">
         <svg
-          onClick={handleWatchlistClick}
+          onClick={isInWatchlist ? handelDeleteClick : handleWatchlistClick}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           stroke="currentColor"

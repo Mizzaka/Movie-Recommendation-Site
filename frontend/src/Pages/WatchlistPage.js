@@ -50,6 +50,21 @@ const WatchlistPage = ({ isSidebarOpen }) => {
       }
   }, [user]);
 
+  const handleDelete =async (itemId, itemType) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete('/api/watchlist', {
+        headers: { Authorization: `Bearer ${token}`},
+        data: { itemId, itemType }
+      });
+      setWatchlist(prevWatchlist => prevWatchlist.filter(item => item.item._id !== itemId));
+
+    } catch (err) {
+      console.error('Error deleting from watchlist:', err);
+      setError('Failed to delete from watchlist');
+    }
+  };
+
     const controls = useAnimationControls();
 
     useEffect(() => {
@@ -102,8 +117,9 @@ const WatchlistPage = ({ isSidebarOpen }) => {
            
 
             <div className='mt-10'>
-            {error && <p>{error}</p>}
-      <div className="grid grid-cols-3 gap-4">
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+      {error && <p>{error}</p>}
       {watchlist.map((item) => (
         <MediaCard
             key={item._id}
@@ -113,6 +129,8 @@ const WatchlistPage = ({ isSidebarOpen }) => {
             title={item.item.title}
             releaseDate={item.item.moviedate}
             ratings={item.item.ratings}
+            onDelete={handleDelete}
+            isInWatchlist={true}
         />
     ))}
       </div>

@@ -1,7 +1,7 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 import Blade from "../assets/newblade.jpeg";
-// import MovieCard from "../components/MovieCard";
+import MediaCard from '../components/MediaCard';
 import NavBar from "../components/NavBar";
 
 import axios from 'axios';
@@ -105,7 +105,7 @@ const Home = ({ isSidebarOpen }) => {
           </div>
         </div>
 
-        {/* <div className="mt-10">
+         <div className="mt-10">
           <div className="mb-8 mx-10 flex justify-between">
             <p className="text-lg md:text-2xl ">Your Movies</p>
           </div>
@@ -155,7 +155,7 @@ const Home = ({ isSidebarOpen }) => {
 
             
           </div>
-        </div> */}
+        </div> 
       </motion.div>
     </>
   );

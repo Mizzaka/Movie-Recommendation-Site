@@ -104,7 +104,10 @@ const DiscoverPage = ({ isSidebarOpen }) => {
             <div className=" flex flex-col justify-center order-2 md:order-1 mb-3 md:mb-0"></div>
           </div>
         </div>
-
+ 
+        <div className="mb-8 mx-10 flex justify-between">
+            <p className="text-lg md:text-2xl ">Your Movies</p>
+          </div>
 
         <div className="m-10 ">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">

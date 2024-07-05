@@ -94,4 +94,22 @@ const addToWatchlist = async (req, res) => {
     }
   };
 
-module.exports = { addToWatchlist, getWatchlist };
+
+  const deleteFromWatchlist = async (req, res) => {
+    const userId = req.user._id;
+    const { itemId, itemType } = req.body;
+
+    try {
+      const watchlistItem = await Watchlist.findOneAndDelete({ user: userId, item: itemId, itemType});
+       if (!watchlistItem) {
+        return res.status(404).json({ message: 'Item not found in watchlist' });
+
+       }
+
+       res.status(200).json({ message: 'Item removed from watchlist '});
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+module.exports = { addToWatchlist, getWatchlist, deleteFromWatchlist };
