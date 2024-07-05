@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar';
 import Int from "../assets/int.jpg";
 import axios from 'axios';
-import TestCard from '../components/TestCard';
+import MediaCard from '../components/MediaCard';
 
 const dashboardVariants = {
   close: {
@@ -27,9 +27,8 @@ const dashboardVariants = {
 
 const DiscoverPage = ({ isSidebarOpen }) => {
  
-
   const [movies, setMovies] = useState([]);
-  
+  const [series, setSeries] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -45,6 +44,22 @@ const DiscoverPage = ({ isSidebarOpen }) => {
 
     fetchMovies();
   }, []);
+
+  useEffect(() => {
+    const fetchSeries = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/series');
+        setSeries(response.data);
+        console.log(response.data);  // Log the response to check URLs
+      } catch (err) {
+        setError('Failed to fetch Series.');
+      }
+    };
+
+    fetchSeries();
+  }, []);
+
+  
 
   const controls = useAnimationControls();
 
@@ -94,21 +109,46 @@ const DiscoverPage = ({ isSidebarOpen }) => {
         <div className="m-10 ">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
             {error && <p>{error}</p>}
-            {movies.map(movie => (
-               <a href="#" key={movie._id}>
-              <TestCard 
-                 image={movie.imageUrl}
-                 title={movie.title}
-                 moviedate={movie.moviedate}
-                 ratings={movie.ratings}
+{movies.map(movie => (
+  <a href="#" key={movie._id}>
+    <MediaCard
+      id={movie._id} // Use movie._id for the id
+      type="movie" // Set type to "movie"
+      image={movie.imageUrl}
+      title={movie.title}
+      releaseDate={movie.moviedate} // Make sure this matches your movie model property
+      ratings={movie.ratings}
+    />
+  </a>
+))}
+            
+              
+            </div>
+            <div className="mb-8 mx-10 flex justify-between">
+            <p className="text-lg md:text-2xl ">Your Series</p>
+          </div>
 
-              />
-              </a>
-            ))}
+          <div className="m-10 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+            {error && <p>{error}</p>}
+{series.map(series => (
+  <a href="#" key={series._id}>
+    <MediaCard
+      id={series._id} // Use series._id for the id
+      type="series" // Set type to "series"
+      image={series.imageUrl}
+      title={series.title}
+      releaseDate={series.moviedate} // Make sure this matches your series model property
+      ratings={series.ratings}
+    />
+  </a>
+))}
             
               
             </div>
 
+            
+          </div>
             
           </div>
     </motion.div>
