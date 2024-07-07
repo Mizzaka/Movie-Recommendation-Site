@@ -112,10 +112,10 @@ const SideNavbar = ({ setIsSidebarOpen }) => {
         <NavigationLink to="/discover" name="Discover">
           <UilCompass className="stroke-inherit stroke-[0.75] min-w-8 w-8 h-7" />
         </NavigationLink>
-        <NavigationLink name="Watch list">
+        <NavigationLink to="/watch" name="Watch list">
           <UilHeartAlt className="stroke-inherit stroke-[0.75] min-w-8 w-8 h-7" />
         </NavigationLink>
-        <NavigationLink name="Coming Soon">
+        <NavigationLink to="/watch" name="Coming Soon">
           <UilSchedule className="stroke-inherit stroke-[0.75] min-w-8 w-8 h-7" />
         </NavigationLink>
         <NavigationLink name="Categories">

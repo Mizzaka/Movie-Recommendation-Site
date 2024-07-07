@@ -1,7 +1,7 @@
 import { motion, useAnimationControls } from 'framer-motion';
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import Int from "../assets/int.jpg";
+import HOD from "../assets/hod.avif";
 import { AuthContext } from '../context/AuthContext';
 import NavBar from '../components/NavBar';
 import MediaCard from '../components/MediaCard';
@@ -88,19 +88,19 @@ const WatchlistPage = ({ isSidebarOpen }) => {
 
           <div className=" relative border border-neutral-600 px-0 py-10 md:py-0 rounded-lg mt-10 mx-10 mr-0 ">
           <img
-            src={Int}
+            src={HOD}
             alt="Description of image"
             className="w-101 h-100 object-cover rounded-lg opacity-80"
           />
           <div className="">
             <h1 className="absolute mt-24 top-20 left-10 text-white text-4xl font-bold p-2 ">
-               Interstellar
+               House Of the Dragon
             </h1>
             <p className="absolute mt-32 top-24 left-10 text-white text-2xl   bg-opacity-100 p-2 ">
-              2014
+              2022
             </p>
             <p className="absolute mt-36 top-28 left-10 text-white text-lg   bg-opacity-100 p-2 ">
-               Sci-fi/Adventure
+               Drama 
             </p>
             <button className=" absolute left-12 -mt-16 bg-secondary px-6 py-2 rounded-xl shadow-2xl hover:bg-yellow-6  00 ">
               Watch
@@ -118,7 +118,7 @@ const WatchlistPage = ({ isSidebarOpen }) => {
 
             <div className='mt-10'>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
       {error && <p>{error}</p>}
       {watchlist.map((item) => (
         <MediaCard
