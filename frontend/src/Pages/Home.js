@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Blade from "../assets/newblade.jpeg";
 import HOD from "../assets/hod.avif";
 import Int from "../assets/int.jpg"
+import  Mom from '../assets/Mom.jpg'
 import MediaCard from "../components/MediaCard";
 import NavBar from "../components/NavBar";
 
@@ -213,6 +214,44 @@ const Home = ({ isSidebarOpen }) => {
             </div>
           </div>
         </div>
+
+        <div className=" relative border border-neutral-600 px-0 py-10 md:py-0 rounded-lg mt-10 mx-10 mr-0 ">
+        <img
+          src={Mom}
+          alt="Description of image"
+          className="w-101 h-100 object-cover rounded-lg opacity-80"
+        />
+        <div className="">
+          <h1 className="absolute mt-24 top-20 left-10 text-white text-4xl font-bold p-2 ">
+            Coming Soon
+          </h1>
+          <button className=" absolute left-12 -mt-16 bg-secondary px-6 py-2 rounded-xl shadow-2xl hover:bg-yellow-6  00 ">
+            Watch
+          </button>
+        </div>
+
+        <div className="flex flex-col md:grid md:grid-cols-2 ">
+          <div className=" flex flex-col justify-center order-2 md:order-1 mb-3 md:mb-0"></div>
+        </div>
+      </div>
+
+      <div className="mx-10 mt-20 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+              {error && <p>{error}</p>}
+              {movies.map((movie) => (
+                <a href="#" key={movie._id}>
+                  <MediaCard
+                    id={movie._id} // Use movie._id for the id
+                    type="movie" // Set type to "movie"
+                    image={movie.imageUrl}
+                    title={movie.title}
+                    releaseDate={movie.moviedate} // Make sure this matches your movie model property
+                    ratings={movie.ratings}
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
       </motion.div>
     </>
   );
