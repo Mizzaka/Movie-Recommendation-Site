@@ -4,6 +4,7 @@ import Blade from "../assets/newblade.jpeg";
 import HOD from "../assets/hod.avif";
 import Int from "../assets/int.jpg"
 import  Mom from '../assets/Mom.jpg'
+import  Avatar from '../assets/ava2.jpg'
 import MediaCard from "../components/MediaCard";
 import NavBar from "../components/NavBar";
 
@@ -44,11 +45,18 @@ const slides = [
   },
 
   {
+    img: Avatar,
+    title: 'Avatar: The Way of Water',
+    year: '2022',
+    genre: 'Sci-fi/Action',
+  },
+
+  {
     img: Int,
     title: 'Interstellar',
     year: '2014',
     genre: 'Sci-fi/Adventure',
-  }
+  },
 ]
 
 const Home = ({ isSidebarOpen }) => {
@@ -131,7 +139,7 @@ const Home = ({ isSidebarOpen }) => {
             transition={{ duration:0.8 }}
           />
           <div className="">
-            <motion.h1 className="absolute mt-24 top-20 left-10 text-white text-4xl font-bold p-2 "
+            <motion.h1 className="absolute mt-24 top-20 left-10 text-white text-4xl font-bold p-2  "
             key={`title-${currentSlide}`}
             initial={{ opacity: 0, y: 20}}
             animate={{ opacity:1, y: 0 }}

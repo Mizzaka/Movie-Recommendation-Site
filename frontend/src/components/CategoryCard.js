@@ -10,8 +10,8 @@ const CategoryCard = ({ category, image, onClick }) => {
         alt={category}
         className='w-full h-40 object-cover '
         />
-       <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-75 '>
-        <h3 className='text-center text-2xl font-semibold text-gray-300'>{category}</h3>
+       <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-75 duration-300 ease-in-out '>
+        <h3 className='text-center text-2xl font-semibold text-gray-300 hover:text-primary'>{category}</h3>
       </div>
     </div>
     
