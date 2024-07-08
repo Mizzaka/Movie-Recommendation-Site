@@ -98,7 +98,7 @@ const DiscoverPage = ({ isSidebarOpen }) => {
         </div>
 
         <div className="flex flex-col md:grid md:grid-cols-2 ">
-          <div className=" flex flex-col justify-center order-2 md:order-1 mb-3 md:mb-0"></div>
+         
         </div>
       </div>
 

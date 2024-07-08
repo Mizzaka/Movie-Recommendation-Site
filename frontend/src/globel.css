@@ -12,3 +12,7 @@ body {
 .card {
     @apply w-60  rounded-xl overflow-hidden  relative cursor-pointer  transform hover:scale-105 transition ease-in duration-200;
 }
+
+.catcard {
+    @apply w-52  rounded-xl overflow-hidden  relative cursor-pointer  transform hover:scale-105 transition ease-in duration-200;
+}
