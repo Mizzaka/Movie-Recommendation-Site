@@ -7,6 +7,7 @@ const movieRoutes = require('./routes/movies')
 const seriesRoutes = require('./routes/series')
 const userRoutes = require('./routes/user')
 const watchlistRoutes = require('./routes/watchlist');
+const categoryRoutes = require('./routes/category');
 
 const app = express()
 
@@ -21,10 +22,11 @@ app.use((req, res, next) => {
 })
 
 //routes
-app.use('/api/movies',movieRoutes)
-app.use('/api/series',seriesRoutes)
-app.use('/api/users',userRoutes)
+app.use('/api/movies',movieRoutes);
+app.use('/api/series',seriesRoutes);
+app.use('/api/users',userRoutes);
 app.use('/api/watchlist', watchlistRoutes);
+app.use('/api/category', categoryRoutes);
 
 
 // connect to db
