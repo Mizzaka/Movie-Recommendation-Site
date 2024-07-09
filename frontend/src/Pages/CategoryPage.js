@@ -11,6 +11,8 @@ import Int from '../assets/int.jpg'
 import  Mom from '../assets/Mom.jpg'
 import  Thriller from '../assets/catgory/thriller.jpg'
 import  Drama from '../assets/catgory/oppenheimer.jpg'
+import MediaCard from "../components/MediaCard";
+import axios from "axios";
 
 const dashboardVariants = {
     close: {
@@ -33,8 +35,24 @@ const dashboardVariants = {
 
 const CategoryPage = ({ isSidebarOpen }) => {
     const controls = useAnimationControls();
-    const handelCategoryClick = (category) => {
-        console.log ('Category clicked:', category)
+    const [movies, setMovies] = useState([]);
+    const [series, setSeries] = useState([]);
+    const [error, setError] = useState("");
+
+
+    const handelCategoryClick = async (category) => {
+        console.log ('Category clicked:', category);
+        
+          try {
+            const response = await axios.get(`http://localhost:4000/api/category/${category}`);
+            console.log('Response data:', response.data);
+            const { movies, series } = response.data;
+            setMovies(movies);
+            setSeries(series);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          setError("Failed to fetch movies and series.");
+        }
     };
 
     const categories = [
@@ -73,9 +91,56 @@ const CategoryPage = ({ isSidebarOpen }) => {
              key={index}
              category={cat.name}
              image={cat.image}
-             onClick={handelCategoryClick}
+             onClick={() => handelCategoryClick(cat.name)}
            />
         ))}
+      </div>
+
+      <div className="mt-10">
+        <div className="mb-8 mx-10 flex justify-between">
+          <p className="text-lg md:text-2xl ">Your Movies</p>
+        </div>
+
+        <div className="m-10 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+          {error && <p>{error}</p>}
+            {movies.length === 0 && <p>No movies found for this category.</p>}
+            {movies.map((movie) => (
+              <a href="#" key={movie._id}>
+                <MediaCard
+                  id={movie._id} // Use movie._id for the id
+                  type="movie" // Set type to "movie"
+                  image={movie.imageUrl}
+                  title={movie.title}
+                  releaseDate={movie.moviedate} // Make sure this matches your movie model property
+                  ratings={movie.ratings}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="mb-8 mx-10 flex justify-between">
+          <p className="text-lg md:text-2xl ">Your Series</p>
+        </div>
+
+        <div className="m-10 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
+          {error && <p>{error}</p>}
+            {series.length === 0 && <p>No series found for this category.</p>}
+            {series.map((series) => (
+              <a href="#" key={series._id}>
+                <MediaCard
+                  id={series._id} // Use series._id for the id
+                  type="series" // Set type to "series"
+                  image={series.imageUrl}
+                  title={series.title}
+                  releaseDate={series.moviedate} // Make sure this matches your series model property
+                  ratings={series.ratings}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
 
         
