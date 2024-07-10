@@ -13,6 +13,7 @@ import  Thriller from '../assets/catgory/thriller.jpg'
 import  Drama from '../assets/catgory/oppenheimer.jpg'
 import MediaCard from "../components/MediaCard";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const dashboardVariants = {
     close: {
@@ -38,6 +39,7 @@ const CategoryPage = ({ isSidebarOpen }) => {
     const [movies, setMovies] = useState([]);
     const [series, setSeries] = useState([]);
     const [error, setError] = useState("");
+    const { category } = useParams();
 
 
     const handelCategoryClick = async (category) => {

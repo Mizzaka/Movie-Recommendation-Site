@@ -28,6 +28,7 @@ const getCategoryItems = async (req, res) => {
 
         res.status(200).json({ movies: updatedMovies, series: updatedSeries });
     } catch (error) {
+        console.error(error);
         res.status(500).json( {error: 'Somthing went wrong ' });
     }
 };
