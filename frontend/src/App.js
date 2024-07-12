@@ -35,7 +35,7 @@ function MainLayout() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/watch" element={<WatchlistPage isSidebarOpen={isSidebarOpen} />} />
-        <Route path="/Category" element={<CategoryPage isSidebarOpen={isSidebarOpen} />} />
+        <Route path="/category" element={<CategoryPage isSidebarOpen={isSidebarOpen} />} />
         
       </Routes>
     </div>
