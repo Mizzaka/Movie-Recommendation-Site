@@ -8,6 +8,7 @@ const seriesRoutes = require('./routes/series')
 const userRoutes = require('./routes/user')
 const watchlistRoutes = require('./routes/watchlist');
 const categoryRoutes = require('./routes/category');
+const trendingRoutes = require('./routes/trending');
 
 const app = express()
 
@@ -27,6 +28,7 @@ app.use('/api/series',seriesRoutes);
 app.use('/api/users',userRoutes);
 app.use('/api/watchlist', watchlistRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/trending', trendingRoutes);
 
 
 // connect to db
