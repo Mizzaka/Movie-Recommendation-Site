@@ -44,7 +44,9 @@ const movieSchema = new Schema({
         default: 0
     },
 
-   
+    interactions: [{ userId: mongoose.Schema.Types.ObjectId, type: String, timestamp: Date }],
+    
+    trendingScore: { type: Number, default: 0 }
 
 });
 
