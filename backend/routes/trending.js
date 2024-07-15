@@ -3,6 +3,6 @@ const { getTrendingItems } = require('../controllers/trendingController');
 
 const router = express.Router();
 
-router.get('/api/trending', getTrendingItems);
+router.get('/', getTrendingItems);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const Movie = require('../models/movieModel');
-const Series = require('../models.seriesModel');
+const Series = require('../models/seriesModel');
 
 function calculateTrendingScore(item) {
     const oneDay = 24 * 60 * 60 * 1000;
