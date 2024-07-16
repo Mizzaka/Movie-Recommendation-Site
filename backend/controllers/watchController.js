@@ -48,12 +48,15 @@ const addToWatchlist = async (req, res) => {
   
       const newItem = new Watchlist({ user: userId, item: itemId, itemType });
       await newItem.save();
+
+      item.watchlistAdds += 1;
+      await item.save();
   
       console.log('New watchlist item saved:', newItem);
       res.status(200).json(newItem);
     } catch (error) {
       console.error('Error adding to watchlist:', error);
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'An error occurred while adding to watchlist' });
     }
   };
 

@@ -33,8 +33,21 @@ const MediaCard = ({ id, type, image, title, releaseDate, ratings, onDelete, isI
     }
   };
 
+  const handleCardClick = async () => {
+    try {
+      await axios.post('/api/trending/increment-views', {
+        id,
+        type,
+      });
+      console.log('View count incremented successfully');
+      // Redirect to detail page or perform any other action here
+    } catch (error) {
+      console.error('Error incrementing views:', error.response ? error.response.data : error.message);
+    }
+  };
+
   return (
-    <div className="card relative">
+    <div className="card relative" onClick={handleCardClick}>
       <img src={image} alt={title} className="w-full h-32 object-cover rounded-xl" />
       <div className="mx-0 mt-4">
         <span className="text-lg line-clamp-2 mb-2">{title}</span>

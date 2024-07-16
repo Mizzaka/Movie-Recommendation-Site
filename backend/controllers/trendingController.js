@@ -11,4 +11,25 @@ const getTrendingItems = async (req, res) => {
     }
 };
 
-module.exports = { getTrendingItems} ;
+const incrementViews = async (req, res) => {
+  const { id, type } = req.body;
+
+  try {
+      if (type === 'movie') {
+        await Movie.findByIdAndUpdate(id, { $inc: { views: 1 }})
+
+      } else if (type === 'series') {
+        await Series.findByIdAndUpdate(id, { $inc: { views: 1}});
+
+      } else {
+        return res.status(400).json({ message: 'Invalid type'});
+      }
+
+      res.status(200).json({ message: 'View count incremented' })
+  } catch (error) {
+    console.error('Error incrementing view count:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getTrendingItems, incrementViews } ;

@@ -113,6 +113,8 @@ const Home = ({ isSidebarOpen }) => {
 
       return () => clearInterval(interval);
     }, []);
+
+    
  
   
   const { img, title, year, genre } = slides[currentSlide];
@@ -187,7 +189,7 @@ const Home = ({ isSidebarOpen }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
               {error && <p>{error}</p>}
               {movies.map((movie) => (
-                <a href="#" key={movie._id}>
+                <a href="#" key={movie._id} >
                   <MediaCard
                     id={movie._id} // Use movie._id for the id
                     type="movie" // Set type to "movie"
@@ -208,7 +210,7 @@ const Home = ({ isSidebarOpen }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
               {error && <p>{error}</p>}
               {series.map((series) => (
-                <a href="#" key={series._id}>
+                <a href="#" key={series._id} >
                   <MediaCard
                     id={series._id} // Use series._id for the id
                     type="series" // Set type to "series"
