@@ -34,16 +34,23 @@ const MediaCard = ({ id, type, image, title, releaseDate, ratings, onDelete, isI
   };
 
   const handleCardClick = async () => {
+    const token = localStorage.getItem('token');
     try {
-      await axios.post('/api/trending/increment-views', {
+      const response = await axios.post('/api/trending/increment-views', {
         id,
         type,
+      }, {
+
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      console.log('View count incremented successfully');
-      // Redirect to detail page or perform any other action here
-    } catch (error) {
-      console.error('Error incrementing views:', error.response ? error.response.data : error.message);
-    }
+       
+       console.log('Views incremented:', response.data);
+
+      } catch (error) {
+        console.error('Error incrementing viewws:', error.response ? error.response.data : error.message);
+      }     
   };
 
   return (
