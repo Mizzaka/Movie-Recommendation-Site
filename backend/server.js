@@ -9,7 +9,8 @@ const userRoutes = require('./routes/user')
 const watchlistRoutes = require('./routes/watchlist');
 const categoryRoutes = require('./routes/category');
 const trendingRoutes = require('./routes/trending');
-const cronJob = require('./cronJob'); 
+const cron = require('node-cron');
+const updateTrendingScores = require('./utils/calculateTrendingScore'); 
 
 const app = express()
 
@@ -32,8 +33,7 @@ app.use('/api/category', categoryRoutes);
 app.use('/api/trending', trendingRoutes);
 
 
-// Initialize cron job
-cronJob;
+
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
@@ -41,6 +41,7 @@ mongoose.connect(process.env.MONGO_URI)
     // listen for requests
     app.listen(process.env.PORT, () => {
     console.log('connected to db & listening on port', process.env.PORT)
+    
      })
     })
     .catch((error) =>{
