@@ -2,6 +2,8 @@ const Movie = require('../models/movieModel');
 const Series = require('../models/seriesModel');
 const View = require('../models/viewModel');
 
+// Get tending Items
+
 const getTrendingItems = async (req, res) => {
     try {
       const trendingMovies = await Movie.find().sort({ trendingScore: -1 }).limit(10);
