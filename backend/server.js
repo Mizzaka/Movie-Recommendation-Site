@@ -9,10 +9,12 @@ const userRoutes = require('./routes/user')
 const watchlistRoutes = require('./routes/watchlist');
 const categoryRoutes = require('./routes/category');
 const trendingRoutes = require('./routes/trending');
-const cron = require('node-cron');
-const updateTrendingScores = require('./utils/calculateTrendingScore'); 
+
+const { initializeTrendingScores, scheduleTrendingScoreUpdates } = require('./initCronJobs'); // Import the functions
 
 const app = express()
+
+const PORT = process.env.PORT || 4000;
 
 // Enable CORS for all requests
 app.use(cors());
@@ -36,14 +38,26 @@ app.use('/api/trending', trendingRoutes);
 
 
 // connect to db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+      
+
     .then(() =>{
-    // listen for requests
-    app.listen(process.env.PORT, () => {
-    console.log('connected to db & listening on port', process.env.PORT)
+        console.log('Connected to the database');
+
+        // Start the server
+        app.listen(PORT, async () => {
+            console.log(`Connected to db & listening on port ${PORT}`);
     
-     })
+            // Initialize trending scores on server start
+            await initializeTrendingScores();
+    
+            // Schedule the cron job to run the trending score update every hour
+            scheduleTrendingScoreUpdates();
+        });
     })
-    .catch((error) =>{
-        console.log(error)
-    })
+    .catch((error) => {
+        console.error('Database connection error:', error);
+    });
