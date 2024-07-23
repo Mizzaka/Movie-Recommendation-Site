@@ -1,14 +1,52 @@
+const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+const dotenv = require('dotenv');
 const Movie = require('../models/movieModel');
 const Series = require('../models/seriesModel');
 const View = require('../models/viewModel');
+
+
+// Load environment variables from .env file
+dotenv.config();
+
+const {
+  AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY,
+  AWS_REGION,
+  S3_BUCKET_NAME,
+
+} = process.env;
+
+// Initialize the S3 interface
+const s3 = new S3Client({
+  region: AWS_REGION,
+  credentials: {
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+  },
+});
 
 // Get tending Items
 
 const getTrendingItems = async (req, res) => {
     try {
-      const trendingMovies = await Movie.find().sort({ trendingScore: -1 }).limit(10);
-      const trendingSeries = await Series.find().sort({ trendingScore: -1 }).limit(10);
-      res.json({ movies: trendingMovies, series: trendingSeries });
+      const trendingMovies = await Movie.find().sort({ trendingScore: -1 }).limit(10).lean();
+      const trendingSeries = await Series.find().sort({ trendingScore: -1 }).limit(10).lean();
+
+      const addImageUrl = async (item) => {
+        const command = new GetObjectCommand({
+          Bucket: S3_BUCKET_NAME,
+          Key: item.image,
+        });
+        const imageUrl = await getSignedUrl(s3, command, { expiresIn:3600 });
+        return { ...item, imageUrl };
+
+      };
+
+      const moviesWithImageUrl = await Promise.all(trendingMovies.map(addImageUrl));
+      const seriesWithImageUrl = await Promise.all(trendingSeries.map(addImageUrl));
+
+      res.json({ movies: moviesWithImageUrl, series: seriesWithImageUrl });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
