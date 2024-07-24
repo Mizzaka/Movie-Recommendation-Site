@@ -13,6 +13,7 @@ import Register from './components/Register.js';
 import Login from './components/Login.js';
 import WatchlistPage from './Pages/WatchlistPage.js';
 import CategoryPage from './Pages/CategoryPage.js';
+import Trending from './Pages/Trending.js';
 
 function MainLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -36,6 +37,7 @@ function MainLayout() {
         <Route path="/login" element={<Login />} />
         <Route path="/watch" element={<WatchlistPage isSidebarOpen={isSidebarOpen} />} />
         <Route path="/category" element={<CategoryPage isSidebarOpen={isSidebarOpen} />} />
+        <Route path="/trending" element={<Trending isSidebarOpen={isSidebarOpen} />} />
         
       </Routes>
     </div>
