@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { motion, useAnimationControls } from "framer-motion";
 import axios from "axios";
 import MediaCard from "../components/MediaCard";
 
-const Trending = () => {
+const dashboardVariants = {
+  close: {
+    marginLeft: "5rem",
+    transition: {
+      type: "spring",
+      damping: 15,
+      duration: 0.5,
+    },
+  },
+  open: {
+    marginLeft: "17rem",
+    transition: {
+      type: "spring",
+      damping: 15,
+      duration: 0.5,
+    },
+  },
+};
+
+const Trending = ({ isSidebarOpen }) => {
   const [trendingData, setTrendingData] = useState({ movies: [], series: [] });
   const [error, setError] = useState(null);
 
@@ -19,7 +39,24 @@ const Trending = () => {
     fetchTrendingData();
   }, []);
 
+  const controls = useAnimationControls();
+
+  useEffect(() => {
+    if (isSidebarOpen) {
+      controls.start("open");
+    } else {
+      controls.start("close");
+    }
+  }, [isSidebarOpen, controls]);
+
   return (
+
+    <motion.div
+      variants={dashboardVariants}
+      animate={controls}
+      initial="close"
+      className="px-5 mr-10 mt-10 text-white"
+    >
     <div>
       {error && <p>{error}</p>}
 
@@ -42,7 +79,7 @@ const Trending = () => {
         </div>
 
         <h2>Trending Series</h2>
-        <div className="m-10 ">
+        <div className="mt-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
               {error && <p>{error}</p>}
               {trendingData.series.map((series) => (
@@ -61,6 +98,7 @@ const Trending = () => {
           </div>
       </div>
     </div>
+    </motion.div>
   );
 };
 
