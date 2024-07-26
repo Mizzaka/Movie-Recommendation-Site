@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 import axios from "axios";
 import MediaCard from "../components/MediaCard";
+import NavBar from "../components/NavBar";
 
 const dashboardVariants = {
   close: {
@@ -57,6 +58,8 @@ const Trending = ({ isSidebarOpen }) => {
       initial="close"
       className="px-5 mr-10 mt-10 text-white"
     >
+
+<NavBar />
     <div>
       {error && <p>{error}</p>}
 
