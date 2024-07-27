@@ -61,6 +61,7 @@ const Trending = ({ isSidebarOpen }) => {
 
 <NavBar />
     <div>
+      //Render Trending
       {error && <p>{error}</p>}
 
       <h2>Trending Movies</h2>
