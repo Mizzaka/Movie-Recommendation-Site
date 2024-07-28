@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 import axios from "axios";
 import NavBar from "../components/NavBar";
+import CategoryCard from "../components/CategoryCard";
+import Int from "../assets/Bg.png";
 
 const dashboardVariants = {
   close: {
@@ -61,8 +63,21 @@ const Trending = ({ isSidebarOpen }) => {
 
 <NavBar />
 
-<div className="">
-    <div className="bg-gray-800 text-white p-4 mx-10 ">
+
+
+<div className="  px-0 py-10 md:py-0 rounded-lg mt-10 mx-10 mr-0 ">
+ <img
+          src={Int}
+          alt="Description of image"
+          className="w-101 h-0 object-cover rounded-lg "
+        /> 
+
+
+
+    
+    </div>
+
+    <div className="  bg-secondary mt-10 text-white p-4 mx-10 mr-0">
       <div className="flex items-center">
         <div className="flex items-center">
           <span className="ml-2 text-xl font-semibold">Trending</span>
@@ -71,7 +86,7 @@ const Trending = ({ isSidebarOpen }) => {
 
       </div>
     </div>
-    </div>
+    
 </motion.div>
   );
 };
