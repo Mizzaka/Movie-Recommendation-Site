@@ -31,10 +31,16 @@ const Trending = ({ isSidebarOpen }) => {
   const [activeTab, setActiveTab] = useState('Movies');
 
   const movies = [
-    { title: 'Movie 1'},
-    { title: 'Movie 2'},
-    { title: 'Movie 3'},
+    { title: 'missaka 1'},
+    { title: 'missaka 2'},
+    { title: 'missaka 3'},
   ]
+
+  const tvSeries = [
+    { title: 'TV  1' },
+    { title: 'TV  2' },
+    { title: 'TV  3' },
+  ];
 
   useEffect(() => {
     const fetchTrendingData = async () => {
@@ -126,7 +132,15 @@ const Trending = ({ isSidebarOpen }) => {
 
         </div>
       )}
-
+      {activeTab === 'Tv Series' && (
+        <div className="space-y-2">
+          { tvSeries.map((series, index) => (
+            <div key={index} className="bg-gray-700 p-2 rounded ">
+              {series.title}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
     
 </motion.div>
