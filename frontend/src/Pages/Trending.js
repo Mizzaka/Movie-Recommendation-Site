@@ -4,6 +4,7 @@ import axios from "axios";
 import NavBar from "../components/NavBar";
 import CategoryCard from "../components/CategoryCard";
 import Int from "../assets/Bg.png";
+import trending from "../assets/trendingyellow.png"
 
 const dashboardVariants = {
   close: {
@@ -28,6 +29,12 @@ const Trending = ({ isSidebarOpen }) => {
   const [trendingData, setTrendingData] = useState({ movies: [], series: [] });
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('Movies');
+
+  const movies = [
+    { title: 'Movie 1'},
+    { title: 'Movie 2'},
+    { title: 'Movie 3'},
+  ]
 
   useEffect(() => {
     const fetchTrendingData = async () => {
@@ -77,14 +84,49 @@ const Trending = ({ isSidebarOpen }) => {
     
     </div>
 
-    <div className="  bg-secondary mt-10 text-white p-4 mx-10 mr-0">
+    <div className=" border mt-5 text-white p-4 mx-5 mr-0">
       <div className="flex items-center">
         <div className="flex items-center">
-          <span className="ml-2 text-xl font-semibold">Trending</span>
+          <img src={trending} alt='trending' className="w-12 -mt-1" />
+          <span className="ml-2 text-3xl font-semibold">Trending</span>
 
         </div>
 
+        
+
       </div>
+
+      <div className="flex space-x-8 mx-4 mt-10">
+          <button 
+           className={`pb-2 ${activeTab === 'Movies' ? 'border-b-2 border-white': ''}`}
+           onClick={() => setActiveTab('Movies')}
+          >
+            Movies
+          </button>
+
+          <button
+            className={`pb-2 ${activeTab === 'Tv Series' ? 'border-b-2 border-white' : ''}`}
+            onClick={() => setActiveTab('Tv Series')}
+          >
+            Tv Series
+          </button>
+
+        </div>
+    </div>
+
+    <hr className="mt-4 border-gray-600 mx-5" />
+    <div className="mt-4">
+      {activeTab === 'Movies' && (
+        <div className="space-y-2">
+          {movies.map((movie, index) => (
+            <div key={index} className="bg-gray-700 p-2 rounded">
+              {movie.title}
+            </div>
+          ))}
+
+        </div>
+      )}
+
     </div>
     
 </motion.div>
