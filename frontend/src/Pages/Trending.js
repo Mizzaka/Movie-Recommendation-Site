@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 import axios from "axios";
-import MediaCard from "../components/MediaCard";
 import NavBar from "../components/NavBar";
 
 const dashboardVariants = {
@@ -26,6 +25,7 @@ const dashboardVariants = {
 const Trending = ({ isSidebarOpen }) => {
   const [trendingData, setTrendingData] = useState({ movies: [], series: [] });
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState('Movies');
 
   useEffect(() => {
     const fetchTrendingData = async () => {
@@ -60,49 +60,19 @@ const Trending = ({ isSidebarOpen }) => {
     >
 
 <NavBar />
-    <div>
-      //Render Trending
-      {error && <p>{error}</p>}
 
-      <h2>Trending Movies</h2>
-      <div className="m-10 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
-          {error && <p>{error}</p>}
-          {trendingData.movies.map((movie) => (
-            <a href="#" key={movie._id}>
-              <MediaCard
-                id={movie._id} // Use movie._id for the id
-                type="movie" // Set type to "movie"
-                image={movie.imageUrl}
-                title={movie.title}
-                releaseDate={movie.moviedate} // Make sure this matches your movie model property
-                ratings={movie.ratings}
-              />
-            </a>
-          ))}
+<div className="">
+    <div className="bg-gray-800 text-white p-4 mx-10 ">
+      <div className="flex items-center">
+        <div className="flex items-center">
+          <span className="ml-2 text-xl font-semibold">Trending</span>
+
         </div>
 
-        <h2>Trending Series</h2>
-        <div className="mt-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
-              {error && <p>{error}</p>}
-              {trendingData.series.map((series) => (
-                <a href="#" key={series._id} >
-                  <MediaCard
-                    id={series._id} // Use series._id for the id
-                    type="series" // Set type to "series"
-                    image={series.imageUrl}
-                    title={series.title}
-                    releaseDate={series.moviedate} // Make sure this matches your series model property
-                    ratings={series.ratings}
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
       </div>
     </div>
-    </motion.div>
+    </div>
+</motion.div>
   );
 };
 
