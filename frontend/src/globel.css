@@ -16,3 +16,24 @@ body {
 .catcard {
     @apply w-52  rounded-lg overflow-hidden  relative cursor-pointer  transform hover:scale-105 transition ease-in duration-200;
 }
+
+.trendcard {
+    @apply w-96 rounded-xl  overflow-hidden  relative cursor-pointer ; 
+}
+
+/* Hide scrollbar for Webkit browsers */
+.overflow-y-auto::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for Firefox */
+  .overflow-y-auto {
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  /* Ensure the element is still scrollable */
+  .overflow-y-auto {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    overflow: -moz-scrollbars-none; /* Older Firefox versions */
+  }
+  
