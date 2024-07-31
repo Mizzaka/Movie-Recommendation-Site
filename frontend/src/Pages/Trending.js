@@ -131,7 +131,7 @@ const Trending = ({ isSidebarOpen }) => {
 
         </div>
     </div>
-
+   // Trending Card 
     <hr className="mt-4 border-gray-600 mx-5" />
     <div className=" flex-grow mt-10 mx-5">
 
