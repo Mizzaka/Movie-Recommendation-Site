@@ -98,6 +98,8 @@ const CategoryPage = ({ isSidebarOpen }) => {
         ))}
       </div>
 
+      // Category Card
+
       <div className="mt-10">
         <div className="mb-8 mx-10 flex justify-between">
           <p className="text-lg md:text-2xl ">Your Movies</p>

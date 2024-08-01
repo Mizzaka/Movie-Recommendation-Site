@@ -101,7 +101,8 @@ const Trending = ({ isSidebarOpen }) => {
 
     
     </div>
-
+      
+      
     <div className=" border -mt-40 text-white p-4 mx-5 mr-0">
       <div className="flex items-center">
         <div className="flex items-center">
