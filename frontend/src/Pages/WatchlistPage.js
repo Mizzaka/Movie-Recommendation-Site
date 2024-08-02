@@ -111,7 +111,7 @@ const WatchlistPage = ({ isSidebarOpen }) => {
             <div className=" flex flex-col justify-center order-2 md:order-1 mb-3 md:mb-0"></div>
           </div>
         </div>
-
+       //watchlist
         <div className='m-10'>
             <p className='text-3xl font-poppins font-semibold '>Your Watchlist</p>
            
