@@ -86,6 +86,8 @@ const WatchlistPage = ({ isSidebarOpen }) => {
 
           <NavBar />
 
+          //Updated
+
           <div className=" relative border border-neutral-600 px-0 py-10 md:py-0 rounded-lg mt-10 mx-10 mr-0 ">
           <img
             src={HOD}
