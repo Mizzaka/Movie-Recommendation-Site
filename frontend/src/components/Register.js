@@ -21,6 +21,8 @@ const Register = () => {
   };
 
   return (
+
+    //Update
     <div className='  relative h-screen bg-cover bg-center'>
        <img src={ Background} alt='bg' className=' blur-sm' />
     
