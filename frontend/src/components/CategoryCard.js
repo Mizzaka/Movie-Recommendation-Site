@@ -2,6 +2,8 @@ import React from 'react'
 
 const CategoryCard = ({ category, image, onClick }) => {
   return (
+
+    //Card 
     <div className='catcard relative flex-1 basis-1/4 max-w-1/4 cursor-pointer p-0  hover:shadow-2xl transition-shadow duration-300 ease-in-out'
     onClick={() => onClick(category)}
     >
