@@ -45,6 +45,7 @@ const MovieUpload = () => {
   };
 
   return (
+    //Temp
     <div>
       <h1>Movie Upload</h1>
       <input type="file" onChange={handleFileChange} />
