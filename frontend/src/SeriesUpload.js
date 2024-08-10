@@ -47,6 +47,7 @@ const SeriesUpload = () => {
   };
 
   return (
+    //Temp
     <div>
       <h1>Seris Upload</h1>
       <input type="file" onChange={handleFileChange} />
