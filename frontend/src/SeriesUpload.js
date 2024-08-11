@@ -90,6 +90,7 @@ const SeriesUpload = () => {
       <button className='mt-20 mr-40' onClick={handleUpload}>Upload</button>
       <p>{uploadStatus}</p>
     </div>
+    //Temp
   );
 };
 
