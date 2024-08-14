@@ -21,6 +21,7 @@ const MovieList = () => {
 
   return (
     <div>
+      //Temp
       <h1 className='text-white'>series List</h1>
       {error && <p>{error}</p>}
       <ul>
