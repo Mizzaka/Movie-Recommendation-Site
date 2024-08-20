@@ -21,19 +21,13 @@ body {
     @apply w-96 rounded-xl  overflow-hidden  relative cursor-pointer ; 
 }
 
-/* Hide scrollbar for Webkit browsers */
-.overflow-y-auto::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Hide scrollbar for Firefox */
-  .overflow-y-auto {
-    scrollbar-width: none; /* Firefox */
-  }
-  
-  /* Ensure the element is still scrollable */
-  .overflow-y-auto {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    overflow: -moz-scrollbars-none; /* Older Firefox versions */
-  }
-  
+/* Hide scrollbar for Chrome, Safari, and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

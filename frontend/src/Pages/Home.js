@@ -184,7 +184,7 @@ const Home = ({ isSidebarOpen }) => {
           <div className="mb-8 mx-10 flex justify-between">
             <p className="text-lg md:text-2xl ">Your Movies</p>
           </div>
-          //Card 
+          
           <div className="m-10 ">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24">
               {error && <p>{error}</p>}
