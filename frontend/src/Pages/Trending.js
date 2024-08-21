@@ -118,6 +118,7 @@ const Trending = ({ isSidebarOpen }) => {
 
       {/* Movie Tab Content */}
       
+      //card
       <div className="flex-grow mt-10 mx-5 h-80 overflow-y-scroll hide-scrollbar">
         <div className="grid grid-cols-3 gap-5 ">
           {movies.map((movie, index) => (
