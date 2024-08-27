@@ -162,6 +162,7 @@ const Trending = ({ isSidebarOpen }) => {
           ))}
         </div>
       </div>
+      //card
     </motion.div>
   );
 };
